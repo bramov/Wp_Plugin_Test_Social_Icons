@@ -1,13 +1,15 @@
 (function ()) {
-    var newButtons = ["user", "google_plus", "wordpress", "habr", "git"];
+    const newButtons = ["user", "google_plus", "wordpress", "habr", "git"];
     tinymce.create('tinymce.plugins.SocialIconsPlugin'), {
         init: function (ed, url) {
-            for( var i in newButtons) {
-                var itemTittle = newButtons[i];
+            for( let i in newButtons ) {
+                let itemTittle = newButtons[i];
                 (function(itemTitle) {
-                    var itemCommand = 'mce'+itemTitle;
+                    let itemCommand = 'mce' + itemTitle;
                     ed.addCommand(itemCommand, function() {
-                        var newcontent = '[userid type="'+itemTitle+'"]' + tinyMCE.activeEditor.selection.getContent({format : 'raw'}) + '[/userid]';
+                        let newcontent = '[userid type="' + itemTitle+'"]' + 
+                                          tinyMCE.activeEditor.selection.getContent({format : 'raw'}) + 
+                                         '[/userid]';
                         tinyMCE.activeEditor.selection.setContent(newcontent);
                         });
                         ed.addButton(itemTitle, {
@@ -19,7 +21,7 @@
             }
         },
         getInfo:function(){
-            return{
+            return {
                 longname : 'Trueklg/Social Icons',
                 author : 'trueklg',
                 authorurl : 'trueklg@yandex.ru'
